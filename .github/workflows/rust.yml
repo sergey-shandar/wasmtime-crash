@@ -10,12 +10,17 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  test:
+    strategy:
+      matrix:
+        type: ['', '--release']
+        target: ['wasm32-wasip1', 'wasm32-wasip1-threads', 'wasm32-wasip2']
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v4
-    - run: rustup target add wasm32-wasip1-threads
+    - run: rustup target add ${{ matrix.target }}
     - name: Run tests
-      run: cargo test --target wasm32-wasip1-threads --release
+      run: cargo test --target ${{ matrix.target }} ${{ matrix.type }}
