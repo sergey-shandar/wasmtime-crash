@@ -26,4 +26,3 @@ jobs:
     - run: rustup target add ${{ matrix.target }}
     - name: Run tests
       run: cargo test --target ${{ matrix.target }} ${{ matrix.type }}
-      continue-on-error: true
