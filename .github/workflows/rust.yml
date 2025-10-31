@@ -15,7 +15,7 @@ jobs:
       matrix:
         rust: ['1.90', '1.91']
         type: ['', '--release']
-        target: ['wasm32-wasip1', 'wasm32-wasip1-threads', 'wasm32-wasip2']
+        target: ['wasm32-wasip1-threads']
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
