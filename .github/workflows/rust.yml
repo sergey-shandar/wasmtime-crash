@@ -15,27 +15,15 @@ jobs:
       fail-fast: false
       matrix:
         rust: [
-          #'1.90',
+          '1.90',
           '1.91'
         ]
-        type: [
-          #'',
-          '--release'
-        ]
-        target: ['wasm32-wasip1-threads']
-        os: [
-          ubuntu-latest,
-          # macos-latest,
-          # windows-latest
-        ]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - run: rustup default ${{ matrix.rust }}
     - uses: bytecodealliance/actions/wasmtime/setup@v1
-    - run: rustup target add ${{ matrix.target }}
-    # - run: cargo install wasmtime-cli
-    - name: Run tests
-      run: cargo test --target ${{ matrix.target }} ${{ matrix.type }}
+    - run: rustup target add wasm32-wasip1-threads
+    - run: cargo test --target wasm32-wasip1-threads --release
