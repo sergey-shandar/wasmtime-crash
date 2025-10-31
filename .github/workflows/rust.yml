@@ -12,6 +12,7 @@ env:
 jobs:
   test:
     strategy:
+      fail-fast: false
       matrix:
         rust: ['1.90', '1.91']
         type: ['', '--release']
