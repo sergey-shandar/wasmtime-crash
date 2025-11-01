@@ -28,4 +28,4 @@ jobs:
     - uses: bytecodealliance/actions/wasmtime/setup@v1
     - uses: wasmerio/setup-wasmer@v1
     - run: rustup target add wasm32-wasip1-threads
-    - run: cargo test --config .cargo/comfig${{ matrix.runner }}.toml --target wasm32-wasip1-threads --release
+    - run: cargo test --config .cargo/config${{ matrix.runner }}.toml --target wasm32-wasip1-threads --release
