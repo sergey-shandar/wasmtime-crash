@@ -18,6 +18,7 @@ jobs:
           '1.90',
           '1.91'
         ]
+        runner: ['', '.wasmer']
 
     runs-on: ubuntu-latest
 
@@ -25,5 +26,6 @@ jobs:
     - uses: actions/checkout@v4
     - run: rustup default ${{ matrix.rust }}
     - uses: bytecodealliance/actions/wasmtime/setup@v1
+    - uses: wasmerio/setup-wasmer@v1
     - run: rustup target add wasm32-wasip1-threads
-    - run: cargo test --target wasm32-wasip1-threads --release
+    - run: cargo test --config .cargo/comfig${{ matrix.runner }}.toml --target wasm32-wasip1-threads --release
